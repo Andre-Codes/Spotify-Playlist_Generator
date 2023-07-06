@@ -8,7 +8,7 @@ class SpotifyService:
         client_id = os.environ['SPOTIPY_CLIENT_ID']
         client_secret = os.environ['SPOTIPY_CLIENT_SECRET']
         redirect_uri = os.environ['SPOTIPY_REDIRECT_URI']
-        self.user_id = 'amardian22'
+        self.user_id = 'SPOTIFY_USERID'
 
         # Set up authentication
         scope = 'user-read-private user-read-email playlist-modify-private playlist-modify-public ugc-image-upload'  # scope for required permissions
@@ -45,7 +45,7 @@ spotify_service = SpotifyService()
 
 cover_art = gpt_service.generate_image(image_prompt)
 
-playlistID = '6ZzDmAbdhZwDwGCVbDbUj1'
+playlistID = '6ZzDmAbdhZwDwGCVbDbUj1' # Raw Spotify track ID
 
 print(cover_art)
 
