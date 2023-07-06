@@ -10,7 +10,7 @@ class SpotifyService:
         client_id = os.environ['SPOTIPY_CLIENT_ID']
         client_secret = os.environ['SPOTIPY_CLIENT_SECRET']
         redirect_uri = os.environ['SPOTIPY_REDIRECT_URI']
-        self.user_id = 'amardian22'
+        self.user_id = 'SPOTIFY_USERID'
 
         # Set up authentication
         scope = 'user-read-private user-read-email playlist-modify-private'  # scope for required permissions
@@ -43,9 +43,6 @@ class SpotifyService:
     def add_to_playlist(self, uris):
         self.sp.playlist_add_items(self.playlist_id, uris)
 
-    # def set_cover_mage(self, playlist_id, cover_image):
-    #     self.sp.playlist_upload_cover_image(playlist_id, cover_image)
-
 
 class GPTService:
     def __init__(self):
@@ -68,7 +65,7 @@ class GPTService:
                             "that contains each of the individual songs. For each song, include "
                             "a field called song and a field called artist, both with the appropriate values."},
             ],
-            temperature=0,
+            temperature=0, # adjust between 0-1, the higher the temp, the more abstract and random the predictions become
         )
 
         # Get the generated text
@@ -77,16 +74,6 @@ class GPTService:
         data = json.loads(generated_text)
         print(data)
         return data['title'], data['description'], data['songs']
-
-    # def generate_image(self, user_mood):
-    #     response = openai.Image.create(
-    #         prompt=user_mood,
-    #         n=1,
-    #         size="256x256",
-    #         response_format="b64_json",
-    #     )
-    #     image_data = response['data'][0]['b64_json']
-    #     return image_data
 
 
 if __name__ == '__main__':
@@ -101,6 +88,3 @@ if __name__ == '__main__':
             songs]  # get generated song URIs from GPT response
     spotify_service.generate_playlist(title, description, user_mood)
     spotify_service.add_to_playlist(uris)  # Add all songs to playlist based on their URIs
-
-    # playlist_cover_art = gpt_service.generate_image(user_mood)
-    # spotify_service.set_cover_mage(spotify_service.playlist_id, playlist_cover_art)
