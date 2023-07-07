@@ -11,4 +11,4 @@ A successful prompt will include details about mood, setting, theme, style, genr
 
 ChatGPT will generate X number of tracks by analyzing factors in user input and matching with tracks containing related attributes.
 
-Tracks are processed by Spotify API and a playlist is generated, along with a ChatGPT generated description and playlist title related to the chosen tracks.
+Tracks are processed by Spotify API and a playlist is generated, along with a ChatGPT generated description and playlist title related to the chosen tracks (see attached screenshot)
